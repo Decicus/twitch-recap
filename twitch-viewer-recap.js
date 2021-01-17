@@ -116,6 +116,43 @@ async function getUserId(username)
 }
 
 /**
+ * Replace known instances with the highest quality image URL.
+ */
+function maxEmoteImageUrl(emoteUrl)
+{
+    const emoteCdns = {
+        'static-cdn.jtvnw.net': {
+            search: /\d.0$/,
+            replace: '3.0',
+        },
+        'cdn.frankerfacez.com': {
+            search: /\d$/,
+            replace: '4',
+        },
+        'cdn.betterttv.net': {
+            search: /\dx$/,
+            replace: '3x',
+        },
+    };
+
+    const cdnHostnames = Object.keys(emoteCdns);
+
+    const url = new URL(emoteUrl);
+    const hostname = url.hostname;
+
+    /**
+     * Return as-is when it's a URL we don't recognize.
+     */
+    if (!cdnHostnames.includes(hostname)) {
+        return emoteUrl;
+    }
+
+    const config = emoteCdns[hostname];
+    const { search, replace } = config;
+    return emoteUrl.replace(search, replace);
+}
+
+/**
  * We need to convert these fields from usernames to IDs.
  */
 const fetchIds = [
@@ -132,7 +169,6 @@ const storedValues = {};
 async function generateImageUrl() {
     const url = new URL(`https://mi.twitch.tv/p/rp/9d573ff64376de87/url`);
     const searchParams = url.searchParams;
-    const emoteCdnRegex = /^https:\/\/static-cdn.jtvnw.net\/emoticons\/v1\/(\d+)\/\d.0$/;
 
     for (const field of parameters)
     {
@@ -154,6 +190,15 @@ async function generateImageUrl() {
          * So we don't pass the parameter to the "user ID retrieval" function.
          */
         let value = input.value;
+
+        /**
+         * Custom handling for Twitch, BTTV and FFZ emotes.
+         */
+        if (id.includes('mi_emote_')) {
+            value = maxEmoteImageUrl(value);
+            input.value = value;
+        }
+
         storedValues[id] = value;
 
         if (!fetchIds.includes(id)) {
@@ -161,6 +206,7 @@ async function generateImageUrl() {
             continue;
         }
 
+        value = value.toLowerCase();
         const userId = await getUserId(value);
         searchParams.set(id, userId);
     }
@@ -206,16 +252,39 @@ window.addEventListener('DOMContentLoaded', () => {
     const recap = document.querySelector('#recap');
     if (button) {
         button.addEventListener('click', async () => {
+            if (button.classList.contains('disabled')) {
+                return;
+            }
+            
+            button.classList.add('disabled');
+
             if (!recap.classList.contains('hidden')) {
                 recap.classList.add('hidden');
             }
 
+            /**
+             * Generate the image URL
+             */
             const imageUrl = await generateImageUrl();
             const recapUrl = recap.querySelector('#recap-url');
+            const img = recap.querySelector('#recap-image');
 
+            /**
+             * Set the URL
+             */
             recapUrl.setAttribute('href', imageUrl);
+            img.src = imageUrl;
+
+            /**
+             * Display the section and scroll the user to the section.
+             */
             recap.classList.remove('hidden');
             recap.scrollIntoView();
+
+            /**
+             * Re-enable button
+             */
+            button.classList.remove('disabled');
         });
     }
 

@@ -9,6 +9,15 @@
             .hidden {
                 display: none;
             }
+
+            #recap {
+                text-align: center;
+            }
+
+            #recap img {
+                max-height: 960px;
+                width: auto;
+            }
         </style>
     </head>
     <body>
@@ -18,13 +27,6 @@
                 <div class="card-body">
                     <p>Fill in the values you want. Eventually you'll get a URL with your generated viewer recap.</p>
                     <p>For the "emote URL" fields you can use <a href="https://twitchemotes.com/">TwitchEmotes.com</a>, <a href="https://betterttv.com/emotes/trending">BetterTTV's trending emotes</a> or <a href="https://www.frankerfacez.com/emoticons/">FrankerFaceZ's public library</a>. They're all good resources for getting emote image URLs.</p>
-                </div>
-            </div>
-
-            <div class="card border-secondary mt-4 hidden" id="recap">
-                <h4 class="card-header bg-secondary">Here's your recap!</h4>
-                <div class="card-body">
-                    <p><a href="" id="recap-url" target="_blank" rel="noreferrer noopener">Click here to access your custom Twitch viewer recap for 2020</a></p>
                 </div>
             </div>
 
@@ -109,6 +111,15 @@
 
                         <button type="button" class="btn btn-success" id="generate-image">Create image!</button>
                     </form>
+                </div>
+            </div>
+
+            <div class="card border-secondary mt-4 hidden" id="recap">
+                <h4 class="card-header bg-secondary">Here's your recap!</h4>
+                <div class="card-body">
+                    <a href="" id="recap-url" target="_blank" rel="noreferrer noopener">
+                        <img src="" id="recap-image">
+                    </a>
                 </div>
             </div>
         </div>
