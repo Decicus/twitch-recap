@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Custom Twitch Viewer Recap 2020</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+        <style type="text/css">
+            .hidden {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="card border-info mt-4">
+                <h4 class="card-header bg-info">Custom Twitch Viewer Recap 2020</h4>
+                <div class="card-body">
+                    <p>Fill in the values you want. Eventually you'll get a URL with your generated viewer recap.</p>
+                    <p>For the "emote URL" fields you can use <a href="https://twitchemotes.com/">TwitchEmotes.com</a>, <a href="https://betterttv.com/emotes/trending">BetterTTV's trending emotes</a> or <a href="https://www.frankerfacez.com/emoticons/">FrankerFaceZ's public library</a>. They're all good resources for getting emote image URLs.</p>
+                </div>
+            </div>
+
+            <div class="card border-secondary mt-4 hidden" id="recap">
+                <h4 class="card-header bg-secondary">Here's your recap!</h4>
+                <div class="card-body">
+                    <p><a href="" id="recap-url" target="_blank" rel="noreferrer noopener">Click here to access your custom Twitch viewer recap for 2020</a></p>
+                </div>
+            </div>
+
+            <div class="card border-primary mt-4">
+                <h4 class="card-header bg-primary">Create your own Twitch viewer recap 2020:</h4>
+                <div class="card-body">
+                    <form action="#">
+                        <div class="form-group">
+                            <label for="mi_channel_id">Top channel name #1:</label>
+                            <input type="text" class="form-control" id="mi_channel_id" placeholder="shroud" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_channel_id2">Top channel name #2:</label>
+                            <input type="text" class="form-control" id="mi_channel_id_2" placeholder="pokimane" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_channel_id3">Top channel name #3:</label>
+                            <input type="text" class="form-control" id="mi_channel_id_3" placeholder="baboabe" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_channel_points">Total channel points earned:</label>
+                            <input type="text" class="form-control" id="mi_channel_points" required="1333337">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_emote_1">Top Emote #1 (direct image URL):</label>
+                            <input type="text" class="form-control" id="mi_emote_1" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_emote_2">Top Emote #2 (direct image URL):</label>
+                            <input type="text" class="form-control" id="mi_emote_2" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_emote_3">Top Emote #3 (direct image URL):</label>
+                            <input type="text" class="form-control" id="mi_emote_3" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_emote_4">Top Emote #4 (direct image URL):</label>
+                            <input type="text" class="form-control" id="mi_emote_4" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_emote_5">Top Emote #5 (direct image URL):</label>
+                            <input type="text" class="form-control" id="mi_emote_5" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_emote_6">Top Emote #6 (direct image URL):</label>
+                            <input type="text" class="form-control" id="mi_emote_6" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_lang">Two-letter language code (defaults to <code>EN</code>):</label>
+                            <input type="text" class="form-control" id="mi_lang" value="EN" required="">
+                            <div class="form-text">
+                                Two-letter language codes seem to be following <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>
+                                <br>
+                                Can't guarantee every single one listed works. If it doesn't, it'll fall back to English (EN) anyways.
+                            </div>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_messages_sent">Total chat messages sent:</label>
+                            <input type="text" class="form-control" id="mi_messages_sent" required="">
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="mi_user_id">Twitch username (used for the avatar):</label>
+                            <input type="text" class="form-control" id="mi_user_id" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mi_username">Twitch username (used at the bottom where it says "Your_Username_Here's 2020 Twitch recap"):</label>
+                            <input type="text" class="form-control" id="mi_username" required="">
+                        </div>
+
+                        <button type="button" class="btn btn-success" id="generate-image">Create image!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="twitch-viewer-recap.js"></script>
+</html>
