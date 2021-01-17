@@ -120,6 +120,10 @@ async function getUserId(username)
  */
 function maxEmoteImageUrl(emoteUrl)
 {
+    if (!emoteUrl) {
+        return emoteUrl;
+    }
+
     const emoteCdns = {
         'static-cdn.jtvnw.net': {
             search: /\d.0$/,
