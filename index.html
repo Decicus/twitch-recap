@@ -37,6 +37,16 @@
                 <div class="card-body">
                     <form action="#">
                         <div class="form-group">
+                            <label for="mi_user_id">Twitch username (used for the avatar):</label>
+                            <input type="text" class="form-control" id="mi_user_id" required="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mi_username">Twitch username (used at the bottom where it says "Your_Username_Here's 2020 Twitch recap"):</label>
+                            <input type="text" class="form-control" id="mi_username" required="">
+                        </div>
+
+                        <div class="form-group">
                             <label for="mi_channel_id">Top channel name #1:</label>
                             <input type="text" class="form-control" id="mi_channel_id" placeholder="shroud" required="">
                         </div>
@@ -99,16 +109,6 @@
                         <div class="form-group">
                             <label for="mi_messages_sent">Total chat messages sent:</label>
                             <input type="text" class="form-control" id="mi_messages_sent" required="">
-                        </div>
-        
-                        <div class="form-group">
-                            <label for="mi_user_id">Twitch username (used for the avatar):</label>
-                            <input type="text" class="form-control" id="mi_user_id" required="">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mi_username">Twitch username (used at the bottom where it says "Your_Username_Here's 2020 Twitch recap"):</label>
-                            <input type="text" class="form-control" id="mi_username" required="">
                         </div>
 
                         <button type="button" class="btn btn-success" id="generate-image">Create image!</button>
